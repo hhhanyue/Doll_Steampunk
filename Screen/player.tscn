@@ -9,13 +9,15 @@
 [ext_resource type="Script" uid="uid://bsqm6k67kkid7" path="res://Scripts/SlideState.gd" id="8_ia8lp"]
 [ext_resource type="Script" uid="uid://pgsqye77yycx" path="res://Scripts/SlideJump.gd" id="9_oa2fw"]
 [ext_resource type="Script" uid="uid://b4xi0b6yatjes" path="res://Scripts/AirState.gd" id="10_7l17m"]
+[ext_resource type="Script" uid="uid://bjfndablekpqq" path="res://Screen/HangState.gd" id="10_prbp3"]
+[ext_resource type="Script" uid="uid://bejbbx4ee6ipb" path="res://Screen/ClimbState.gd" id="11_prbp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3toq"]
 size = Vector2(16, 27.5)
 
-[sub_resource type="Animation" id="Animation_h0ss5"]
+[sub_resource type="Animation" id="Animation_nm4b8"]
 resource_name = "Player_Climb"
-length = 3.0
+length = 0.40000668
 step = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -27,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(192, 128, 64, 64)]
+"values": [Rect2(64, 128, 384, 64)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -39,7 +41,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [6]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -48,22 +50,10 @@ tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../..:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(3.493709, -2.2320917)]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_6dqou"]
@@ -105,6 +95,47 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(192, 64, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_h0ss5"]
+resource_name = "Player_Hang"
+loop_mode = 1
+step = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(320, 192, 64, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_ia8lp"]
@@ -328,8 +359,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3toq"]
 _data = {
-&"Player_Climb": SubResource("Animation_h0ss5"),
+&"Player_Climb": SubResource("Animation_nm4b8"),
 &"Player_Fall": SubResource("Animation_6dqou"),
+&"Player_Hang": SubResource("Animation_h0ss5"),
 &"Player_Idle": SubResource("Animation_ia8lp"),
 &"Player_Jump": SubResource("Animation_oa2fw"),
 &"Player_Move": SubResource("Animation_7l17m"),
@@ -368,7 +400,11 @@ region_rect = Rect2(0, 0, 448, 64)
 target_position = Vector2(0, 0.7)
 
 [node name="WallCheck" type="RayCast2D" parent="Body" unique_id=1077396128]
-position = Vector2(8.729, -17.831)
+position = Vector2(8.729, -13.631)
+target_position = Vector2(1.329504, 0.013784409)
+
+[node name="LedgeCheck" type="RayCast2D" parent="Body" unique_id=58754356]
+position = Vector2(8.729, -17.171)
 target_position = Vector2(1.329504, 0.013784409)
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=850761652 node_paths=PackedStringArray("current_state")]
@@ -376,42 +412,30 @@ script = ExtResource("4_qe4ot")
 current_state = NodePath("IdleState")
 metadata/_custom_type_script = "uid://cwd5nresknnrs"
 
-[node name="IdleState" type="Node2D" parent="StateMachine" unique_id=1937241211 node_paths=PackedStringArray("player", "state_machine", "anim", "body")]
+[node name="IdleState" type="Node2D" parent="StateMachine" unique_id=1937241211]
 script = ExtResource("5_6dqou")
-player = NodePath("../..")
-state_machine = NodePath("..")
-anim = NodePath("../../AnimationPlayer")
-body = NodePath("../../Body")
 metadata/_custom_type_script = "uid://b7r0hi1pptut3"
 
-[node name="MoveState" type="Node2D" parent="StateMachine" unique_id=621662346 node_paths=PackedStringArray("player", "state_machine", "anim", "body")]
+[node name="MoveState" type="Node2D" parent="StateMachine" unique_id=621662346]
 script = ExtResource("6_ia8lp")
-player = NodePath("../..")
-state_machine = NodePath("..")
-anim = NodePath("../../AnimationPlayer")
-body = NodePath("../../Body")
 metadata/_custom_type_script = "uid://b7r0hi1pptut3"
 
-[node name="AirState" type="Node2D" parent="StateMachine" unique_id=893240888 node_paths=PackedStringArray("player", "state_machine", "anim", "body")]
+[node name="AirState" type="Node2D" parent="StateMachine" unique_id=893240888]
 script = ExtResource("10_7l17m")
-player = NodePath("../..")
-state_machine = NodePath("..")
-anim = NodePath("../../AnimationPlayer")
-body = NodePath("../../Body")
 metadata/_custom_type_script = "uid://b4xi0b6yatjes"
 
-[node name="SlideState" type="Node2D" parent="StateMachine" unique_id=419919926 node_paths=PackedStringArray("player", "state_machine", "anim", "body")]
+[node name="SlideState" type="Node2D" parent="StateMachine" unique_id=419919926]
 script = ExtResource("8_ia8lp")
-player = NodePath("../..")
-state_machine = NodePath("..")
-anim = NodePath("../../AnimationPlayer")
-body = NodePath("../../Body")
 metadata/_custom_type_script = "uid://ca6hvh1nvylrl"
 
-[node name="SlideJump" type="Node2D" parent="StateMachine" unique_id=1282317891 node_paths=PackedStringArray("player", "state_machine", "anim", "body")]
+[node name="SlideJump" type="Node2D" parent="StateMachine" unique_id=1282317891]
 script = ExtResource("9_oa2fw")
-player = NodePath("../..")
-state_machine = NodePath("..")
-anim = NodePath("../../AnimationPlayer")
-body = NodePath("../../Body")
 metadata/_custom_type_script = "uid://pgsqye77yycx"
+
+[node name="HangState" type="Node2D" parent="StateMachine" unique_id=442837900]
+script = ExtResource("10_prbp3")
+metadata/_custom_type_script = "uid://ca6hvh1nvylrl"
+
+[node name="ClimbState" type="Node2D" parent="StateMachine" unique_id=2108269979]
+script = ExtResource("11_prbp3")
+metadata/_custom_type_script = "uid://ca6hvh1nvylrl"

@@ -6,10 +6,12 @@ class_name StateMachine
 ##默认状态
 @export var current_state:StateBase
 
+var body:Body
+var anim:AnimationPlayer
+var player:Player
+
 func _ready()->void:
-	for child in get_children():
-		if child is StateBase:
-			child.state_machine=self
+	get_necessary_node()
 	await get_parent().ready
 	current_state.enter()
 	
@@ -27,3 +29,17 @@ func change_state(target_state_name:String)->void:
 	current_state.exit()
 	current_state=target_state
 	current_state.enter()
+	
+##获取player,animplayer,body节点
+func get_necessary_node()->void:
+	player=get_parent()
+	for child in player.get_children():
+		if child is Body:
+			body=child
+		if child is AnimationPlayer:
+			anim=child
+		player=child.get_parent()
+	for child in get_children():
+		if child is StateBase:
+			child.state_machine=self
+			child.init(player,anim,body)

@@ -6,8 +6,10 @@ class_name Player
 
 @onready var player: Player = $"."
 @export var state_machine:StateMachine
+@onready var anim:AnimationPlayer=$"AnimationPlayer"
 @onready var ground_check: RayCast2D = $Body/GroundCheck
 @onready var wall_check: RayCast2D = $Body/WallCheck
+@onready var ledge_check: RayCast2D = $Body/LedgeCheck
 
 ##move
 @export var speed:float =800
@@ -42,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 	
-	player.move_and_slide()
+	self.move_and_slide()
 	
 ##是否在地面
 func is_in_ground()->bool:
@@ -56,7 +58,14 @@ func is_wall_detected()->bool:
 	var wall_collid_object=wall_check.get_collider()
 	
 	if wall_collid_object is TileMapLayer:
-		print("碰墙")
+		return true
+	return false
+	
+##高处是否检测到障碍
+func is_ledge_detected()->bool:
+	var ledge_collid_object=ledge_check.get_collider()
+	
+	if ledge_collid_object is TileMapLayer:
 		return true
 	return false
 	
@@ -71,7 +80,24 @@ func move(delta:float)->void:
 ##移动方向与面朝方向是否一致
 func is_movedir_sim_facedir()->bool:
 	if player.facing_dir*player.direction.x>0:
-		print("true")
 		return true
 	return false
 	
+func climb()->void:
+	
+	velocity = Vector2.ZERO
+	##播放攀爬动画
+	anim.play("Player_Climb",-1,0.5)
+	##定义并播放tween补间动画
+	var tween = create_tween().set_parallel(false)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	##向上的高度
+	tween.tween_property(self, "global_position:y", global_position.y - 3, 0.2)
+	##向平台的距离
+	tween.parallel().tween_property(self, "global_position:x", global_position.x + (facing_dir * 4), 0.3).set_delay(0.1)
+	##补间动画束后调用
+	tween.finished.connect(_end_climb)
+	
+func _end_climb():
+	state_machine.change_state("IdleState")

@@ -18,7 +18,6 @@ func pocess_update(delta: float)->void:
 ##物理帧触发
 func physice_pocess_update(delta: float)->void:
 	super.physice_pocess_update(delta)
-	anim.play("Player_Climb")
 	player.velocity.y=player.slide_gravity
 	player.move(delta)
 	if player.direction.y>0:

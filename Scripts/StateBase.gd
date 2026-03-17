@@ -3,12 +3,16 @@ extends Node2D
 ##基础状态
 class_name StateBase
 ##玩家节点
-@export var player:Player
-##状态机
-@export var state_machine:StateMachine
-@export var anim:AnimationPlayer
-@export var body: Body
+var player:Player
+var state_machine:StateMachine
+var anim:AnimationPlayer
+var body: Body
 
+
+func init(player:Player,anim:AnimationPlayer,body:Body)->void:
+	self.player=player
+	self.anim=anim
+	self.body=body
 
 func enter() -> void:
 	pass
@@ -24,8 +28,9 @@ func pocess_update(delta: float)->void:
 func physice_pocess_update(delta: float)->void:
 	pass
 	
+##判断翻转
 func should_flip()->void:
-	if (player.facing_dir>0 and player.direction.x<0) or (player.facing_dir<0 and player.direction.x>0):
+	if (player.facing_dir>0 and player.velocity.x<0) or (player.facing_dir<0 and player.velocity.x>0):
 		player.facing_dir=player.facing_dir*-1
 		body.flip()
 		
@@ -35,3 +40,4 @@ func is_rise_or_fall()->void:
 		anim.play("Player_Jump")
 	else:
 		anim.play("Player_Fall")
+		
