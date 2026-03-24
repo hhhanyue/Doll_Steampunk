@@ -5,11 +5,11 @@ class_name Player
 
 
 @onready var player: Player = $"."
-@export var state_machine:StateMachine
+@export var state_machine:PlayerStateMachine
 @onready var anim:AnimationPlayer=$"AnimationPlayer"
 @onready var ground_check: RayCast2D = $Body/GroundCheck
-@onready var wall_check: RayCast2D = $Body/WallCheck
-@onready var ledge_check: RayCast2D = $Body/LedgeCheck
+@onready var wall_check: ShapeCast2D = $Body/WallCheck
+@onready var ledge_check: ShapeCast2D = $Body/LedgeCheck
 
 ##move
 @export var speed:float =800
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 	
-	self.move_and_slide()
+	
 	
 ##是否在地面
 func is_in_ground()->bool:
@@ -55,18 +55,25 @@ func is_in_ground()->bool:
 	
 ##朝向是否是墙
 func is_wall_detected()->bool:
-	var wall_collid_object=wall_check.get_collider()
-	
-	if wall_collid_object is TileMapLayer:
-		return true
+	wall_check.force_shapecast_update()
+	if wall_check.is_colliding():
+		var count = wall_check.get_collision_count()
+		for i in range(count):
+			
+			var collider = wall_check.get_collider(i)
+			if collider is TileMapLayer:
+				return true
 	return false
 	
 ##高处是否检测到障碍
 func is_ledge_detected()->bool:
-	var ledge_collid_object=ledge_check.get_collider()
-	
-	if ledge_collid_object is TileMapLayer:
-		return true
+	ledge_check.force_shapecast_update()
+	if ledge_check.is_colliding():
+		var count = ledge_check.get_collision_count()
+		for i in range(count):
+			var collider = ledge_check.get_collider(i)
+			if collider is TileMapLayer:
+				return true
 	return false
 	
 #下落逻辑
@@ -101,3 +108,9 @@ func climb()->void:
 	
 func _end_climb():
 	state_machine.change_state("IdleState")
+	
+func _finish_attack():
+	state_machine.change_state("IdleState")
+	
+	
+	

@@ -1,14 +1,13 @@
 extends Node2D
 
-##角色状态机
-class_name StateMachine
+class_name EnemyStateMachine
 
-##默认状态
-@export var current_state:StateBase
+@export var current_state:FishManStateBase
 
 var body:Body
 var anim:AnimationPlayer
-var player:Player
+var enemy:Enemy
+var collision:CollisionShape2D
 
 func _ready()->void:
 	get_necessary_node()
@@ -32,14 +31,16 @@ func change_state(target_state_name:String)->void:
 	
 ##获取player,animplayer,body节点
 func get_necessary_node()->void:
-	player=get_parent()
-	for child in player.get_children():
+	enemy=get_parent()
+	for child in enemy.get_children():
 		if child is Body:
 			body=child
 		if child is AnimationPlayer:
 			anim=child
-		player=child.get_parent()
+		if child is CollisionShape2D:
+			collision=child
+		enemy=child.get_parent()
 	for child in get_children():
-		if child is StateBase:
+		if child is FishManStateBase:
 			child.state_machine=self
-			child.init(player,anim,body)
+			child.init(enemy,anim,body,collision)

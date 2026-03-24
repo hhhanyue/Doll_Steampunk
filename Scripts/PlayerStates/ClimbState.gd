@@ -1,4 +1,4 @@
-extends StateBase
+extends PlayerStateBase
 
 class_name ClimbState
 

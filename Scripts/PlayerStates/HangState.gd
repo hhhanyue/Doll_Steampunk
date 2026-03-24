@@ -1,4 +1,4 @@
-extends StateBase
+extends PlayerStateBase
 
 class_name HangState
 
@@ -24,7 +24,6 @@ func pocess_update(delta: float)->void:
 	
 ##物理帧触发
 func physice_pocess_update(delta: float)->void:
-	super.physice_pocess_update(delta)
 	##保持
 	state_time-=delta
 	if state_time<0:
@@ -37,3 +36,4 @@ func physice_pocess_update(delta: float)->void:
 		elif player.is_movedir_sim_facedir() or player.direction.y>0:
 			state_machine.change_state("ClimbState")
 			return
+	super.physice_pocess_update(delta)

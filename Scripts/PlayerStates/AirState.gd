@@ -1,4 +1,4 @@
-extends StateBase
+extends PlayerStateBase
 
 class_name AirState
 
@@ -15,7 +15,6 @@ func pocess_update(delta: float)->void:
 	
 ##物理帧触发
 func physice_pocess_update(delta: float)->void:
-	super.physice_pocess_update(delta)
 	player.move(delta)
 	player.fall(delta)
 	#到达地面 
@@ -33,3 +32,4 @@ func physice_pocess_update(delta: float)->void:
 	
 	should_flip()
 	is_rise_or_fall()
+	super.physice_pocess_update(delta)

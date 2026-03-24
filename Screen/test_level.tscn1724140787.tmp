@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c1l1kkt00hv4u" path="res://Assets/Sprites/tilemaps/tilemaps.png" id="2_tftgq"]
 [ext_resource type="Script" uid="uid://x71kak0xl71j" path="res://Scripts/GameManagers/InputManager.gd" id="3_f45ik"]
 [ext_resource type="PackedScene" uid="uid://cfyskcrpuauyn" path="res://Prefabs/FishMan.tscn" id="4_f45ik"]
-[ext_resource type="Script" uid="uid://bcv50flaa1rdo" path="res://Scripts/GameManagers/PlayerManger.gd" id="5_vest6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5bq4"]
 texture = ExtResource("2_tftgq")
@@ -104,19 +103,12 @@ tile_set = SubResource("TileSet_f45ik")
 [node name="InputManager" type="Node2D" parent="." unique_id=33367479]
 script = ExtResource("3_f45ik")
 
-[node name="FishMan" parent="." unique_id=598357161 node_paths=PackedStringArray("partol_point") instance=ExtResource("4_f45ik")]
+[node name="FishMan" parent="." unique_id=598357161 instance=ExtResource("4_f45ik")]
 position = Vector2(30.355927, -2.3914561)
 scale = Vector2(0.43, 0.43)
-partol_point = NodePath("PatrolPoints")
 
 [node name="PatrolPoints" type="Node2D" parent="FishMan" unique_id=1544760624]
 
 [node name="point1" type="Marker2D" parent="FishMan/PatrolPoints" unique_id=1525304839]
-position = Vector2(29.19128, 1.5024984)
 
 [node name="point2" type="Marker2D" parent="FishMan/PatrolPoints" unique_id=2103527957]
-position = Vector2(-19.317753, 3.8635523)
-
-[node name="PlayerManger" type="Node2D" parent="." unique_id=1123125045]
-script = ExtResource("5_vest6")
-metadata/_custom_type_script = "uid://bcv50flaa1rdo"

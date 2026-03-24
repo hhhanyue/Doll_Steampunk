@@ -1,4 +1,4 @@
-extends StateBase
+extends PlayerStateBase
 
 class_name SlideJump
 
@@ -17,3 +17,4 @@ func physice_pocess_update(delta: float)->void:
 	player.fall(delta)
 	if state_timer<0:
 		state_machine.change_state("IdleState")
+	super.physice_pocess_update(delta)

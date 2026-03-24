@@ -12,9 +12,10 @@ func enter()->void:
 func pocess_update(delta: float) -> void:
 	super.pocess_update(delta)
 func physice_pocess_update(delta: float)->void:
-	super.physice_pocess_update(delta)
-	if player.direction.x!=0:
+	player.move(delta)
+	if player.velocity.x!=0:
 		state_machine.change_state("MoveState")
+	super.physice_pocess_update(delta)
 	
 func exit()->void:
 	super.exit()
