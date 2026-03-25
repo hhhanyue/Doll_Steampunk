@@ -26,10 +26,10 @@ var facing_dir:int=1
 ##idle的enter
 func _ready() -> void:
 	ground_check.add_exception(player)
+	state_machine.statemachine_ready()
 
 func _process(delta: float) -> void:
-	state_machine.current_state.pocess_update(delta)
-	pass
+	state_machine.statemachine_process(delta)
 
 func _physics_process(delta: float) -> void:
 	direction=Vector2.ZERO
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		direction.y+=1
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
-	
+	state_machine.statemachine_physics_process(delta)
 	
 	
 ##是否在地面

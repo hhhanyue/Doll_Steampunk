@@ -30,8 +30,16 @@ func pocess_update(delta: float)->void:
 func physice_pocess_update(delta: float)->void:
 	fishman.move_and_slide()
 	
+##方向速度相同
 func facing_forward()->void:
 	if fishman.velocity.x>0:
 		body.scale=Vector2(1,1)
 	if fishman.velocity.x<0:
+		body.scale=Vector2(-1,1)
+		
+##朝向玩家
+func facing_player(player_target_dir:int)->void:
+	if player_target_dir>0:
+		body.scale=Vector2(1,1)
+	if player_target_dir<0:
 		body.scale=Vector2(-1,1)

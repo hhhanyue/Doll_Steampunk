@@ -9,15 +9,15 @@ var anim:AnimationPlayer
 var enemy:Enemy
 var collision:CollisionShape2D
 
-func _ready()->void:
+func enemy_ready()->void:
 	get_necessary_node()
 	await get_parent().ready
 	current_state.enter()
 	
-func _process(delta: float) -> void:
+func enemy_process(delta: float) -> void:
 	current_state.pocess_update(delta)
 
-func _physics_process(delta: float) -> void:
+func enemy_physics_process(delta: float) -> void:
 	current_state.physice_pocess_update(delta)
 	
 func change_state(target_state_name:String)->void:
@@ -40,6 +40,8 @@ func get_necessary_node()->void:
 		if child is CollisionShape2D:
 			collision=child
 		enemy=child.get_parent()
+	if enemy==null or anim==null or body==null or collision==null:
+		printerr("敌人状态机未找到组件")
 	for child in get_children():
 		if child is FishManStateBase:
 			child.state_machine=self

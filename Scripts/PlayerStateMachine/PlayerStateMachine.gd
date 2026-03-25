@@ -11,15 +11,15 @@ var anim:AnimationPlayer
 var player:Player
 var collision:CollisionShape2D
 
-func _ready()->void:
+func statemachine_ready()->void:
 	get_necessary_node()
 	await get_parent().ready
 	current_state.enter()
 	
-func _process(delta: float) -> void:
+func statemachine_process(delta: float) -> void:
 	current_state.pocess_update(delta)
 
-func _physics_process(delta: float) -> void:
+func statemachine_physics_process(delta: float) -> void:
 	current_state.physice_pocess_update(delta)
 	
 func change_state(target_state_name:String)->void:

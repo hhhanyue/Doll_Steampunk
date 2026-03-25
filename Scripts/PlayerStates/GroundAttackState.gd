@@ -4,7 +4,6 @@ class_name GroundAttackState
 
 func enter() -> void:
 	super.enter()
-	player.velocity=Vector2.ZERO
 	anim.play("Player_Ground_Attack")
 	
 func exit()->void:

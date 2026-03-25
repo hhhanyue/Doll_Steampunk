@@ -4,6 +4,7 @@ class_name  FishMan
 
 @export var partol_point:Node
 
+##巡逻用变量
 var points:Array[Marker2D]
 var points_pos:Array[Vector2]
 var target_pos:Vector2
@@ -11,8 +12,22 @@ var point_size:int
 var point_index:int
 var is_ascend:bool=true
 
+var attacktimer:float
+var attack1_probability:int=70;
+var current_attack1_probability:int=70;
+var attack_cooldowncount:float=1
+var current_attack_cooldowncount:float=1
+
 func _ready() -> void:
 	init_points()
+	state_machine.enemy_ready()
+	
+func _process(delta: float) -> void:
+	state_machine.enemy_process(delta)
+	
+func _physics_process(delta: float) -> void:
+	state_machine.enemy_physics_process(delta)
+	current_attack_cooldowncount-=delta
 	
 ##敌人离标记点是否够近
 ##point_index代表巡逻点
@@ -41,3 +56,16 @@ func init_points()->void:
 		points_pos.append(points[i].global_position)
 	target_pos=points_pos[0]
 	point_index=0
+	
+func random_attack_type()->String:
+	var attack_probability=randi_range(1,100)
+	if attack_probability<current_attack1_probability:
+		current_attack1_probability=attack1_probability
+		return "FishMan_Attack1"
+	current_attack1_probability-=10
+	return "FishMan_Attack2"
+		
+func _attack_finish():
+	current_attack_cooldowncount=attack_cooldowncount
+	self.state_machine.change_state("FishManPatrolState")
+	
