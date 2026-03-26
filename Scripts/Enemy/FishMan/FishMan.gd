@@ -12,11 +12,14 @@ var point_size:int
 var point_index:int
 var is_ascend:bool=true
 
+##攻击用变量
 var attacktimer:float
-var attack1_probability:int=70;
-var current_attack1_probability:int=70;
+var attack1_probability:int=0;
+var current_attack1_probability:int=0;
 var attack_cooldowncount:float=1
 var current_attack_cooldowncount:float=1
+##是否攻击到玩家
+var hitplayer:bool=false
 
 func _ready() -> void:
 	init_points()
@@ -57,6 +60,7 @@ func init_points()->void:
 	target_pos=points_pos[0]
 	point_index=0
 	
+##随机攻击类型
 func random_attack_type()->String:
 	var attack_probability=randi_range(1,100)
 	if attack_probability<current_attack1_probability:
@@ -65,6 +69,7 @@ func random_attack_type()->String:
 	current_attack1_probability-=10
 	return "FishMan_Attack2"
 		
+#动画中调用，攻击结束
 func _attack_finish():
 	current_attack_cooldowncount=attack_cooldowncount
 	self.state_machine.change_state("FishManPatrolState")

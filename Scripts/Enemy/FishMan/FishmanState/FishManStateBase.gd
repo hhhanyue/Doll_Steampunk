@@ -43,3 +43,11 @@ func facing_player(player_target_dir:int)->void:
 		body.scale=Vector2(1,1)
 	if player_target_dir<0:
 		body.scale=Vector2(-1,1)
+		
+##判断玩家在左还是右
+func player_in_lft_or_rig()->int:
+	if player.global_position.x>fishman.global_position.x:
+		return 1
+	elif player.global_position.x<fishman.global_position.x:
+		return -1
+	return 0

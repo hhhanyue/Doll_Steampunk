@@ -55,14 +55,7 @@ func move_to_player(delta:float,player_target_dir:int)->void:
 		if not is_back_no_ground():
 			fishman.Move(delta,-player_target_dir,fishman.speed/4)
 		facing_player(player_target_dir)
-	
-##判断玩家在左还是右
-func player_in_lft_or_rig()->int:
-	if player.global_position.x>fishman.global_position.x:
-		return 1
-	elif player.global_position.x<fishman.global_position.x:
-		return -1
-	return 0
+
 	
 ##对峙
 ##随机前后移动的时间
