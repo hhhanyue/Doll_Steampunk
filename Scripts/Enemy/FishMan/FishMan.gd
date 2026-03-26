@@ -14,8 +14,8 @@ var is_ascend:bool=true
 
 ##攻击用变量
 var attacktimer:float
-var attack1_probability:int=0;
-var current_attack1_probability:int=0;
+var attack1_probability:int=70;
+var current_attack1_probability:int=70;
 var attack_cooldowncount:float=1
 var current_attack_cooldowncount:float=1
 ##是否攻击到玩家

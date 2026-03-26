@@ -28,4 +28,6 @@ func physice_pocess_update(delta: float)->void:
 			
 	if fishman.hitplayer:
 		##进入投技状态
+		fishman.state_machine.change_state("FishManCatchPlayer")
+		fishman.hitplayer=false
 		pass

@@ -6,12 +6,13 @@
 [ext_resource type="Script" uid="uid://bshr0fswmlau2" path="res://Scripts/EnemyStateMachine.gd" id="3_4cso5"]
 [ext_resource type="Script" uid="uid://0b2t6fd0e15u" path="res://Scripts/Enemy/FishMan/FishmanState/FishManIdleState.gd" id="4_7b0x7"]
 [ext_resource type="Script" uid="uid://bne3xyoygxg6y" path="res://Scripts/PlayerFolder/PlayerHitBox.gd" id="4_y22u0"]
-[ext_resource type="Script" uid="uid://cgnixxr0gylx6" path="res://Prefabs/FishManAttackZone.gd" id="5_nyim0"]
+[ext_resource type="Script" uid="uid://cgnixxr0gylx6" path="res://Scripts/Enemy/FishMan/FishManAttackZone.gd" id="5_nyim0"]
 [ext_resource type="Script" uid="uid://dwdvfu432o4g5" path="res://Scripts/Enemy/FishMan/FishmanState/FishManPatrolState.gd" id="6_1i35p"]
 [ext_resource type="Script" uid="uid://cuq04hk73ttl" path="res://Scripts/AttackCollision.gd" id="6_my5i5"]
 [ext_resource type="Script" uid="uid://bwupjkfu2rj66" path="res://Scripts/Enemy/FishMan/FishmanState/FishManEngageState.gd" id="7_7ehbg"]
 [ext_resource type="Script" uid="uid://bfghot5mjvctg" path="res://Scripts/Enemy/FishMan/FishmanState/FishManAttack1.gd" id="8_fd5vy"]
 [ext_resource type="Script" uid="uid://byi81evll6wan" path="res://Scripts/Enemy/FishMan/FishmanState/FishManAttack2.gd" id="9_fd5vy"]
+[ext_resource type="Script" uid="uid://ckonq6c42827q" path="res://Scripts/Enemy/FishMan/FishmanState/FishManCatchPlayer.gd" id="13_kmtt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeioe"]
 size = Vector2(8.378094, 10.909669)
@@ -256,6 +257,95 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_kmtt2"]
+resource_name = "Grap_Player"
+length = 2.500025
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(192, 128, 192, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/GrabPoint:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 2),
+"points": PackedFloat32Array(0.10419655, -0.25, 0, 0.25, 0, 1.9276505, -0.16666667, -0.303909, 0, 0, -1.9276505, -0.16666667, 0.6425502, 0, 0, 20.110077, -0.125, -3.6729546, 0, 0),
+"times": PackedFloat32Array(0, 1, 1.75, 2.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/GrabPoint:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 2),
+"points": PackedFloat32Array(-5.8350487, -0.25, 0, 0.25, 0, -3.1259184, -0.16666667, -0.45152172, 0, 0, -6.877021, -0.16666667, 0.62518376, 0, 0, -9.690348, -0.125, 0.4688878, 0, 0),
+"times": PackedFloat32Array(0, 1, 1.75, 2.5)
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finish"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_1i35p"]
 length = 0.001
 tracks/0/type = "value"
@@ -340,12 +430,35 @@ tracks/6/keys = {
 "points": PackedFloat32Array(-4.404704, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/GrabPoint:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.10419655, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/GrabPoint:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-5.8350487, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ehbg"]
 _data = {
 &"FishMan_Attack_1": SubResource("Animation_fd5vy"),
 &"FishMan_Attack_2": SubResource("Animation_7ehbg"),
 &"FishMan_Patrol": SubResource("Animation_im7oi"),
+&"Grap_Player": SubResource("Animation_kmtt2"),
 &"RESET": SubResource("Animation_1i35p")
 }
 
@@ -388,6 +501,7 @@ position = Vector2(-2.864, 4.993)
 target_position = Vector2(0, 1.475)
 
 [node name="GrabPoint" type="Marker2D" parent="Body" unique_id=745467154]
+position = Vector2(0.10419655, -5.8350487)
 
 [node name="Hitbox" type="Area2D" parent="Body" unique_id=1881556223]
 collision_layer = 4
@@ -432,6 +546,10 @@ metadata/_custom_type_script = "uid://bxi4lx7dpgor4"
 [node name="FishMan_Attack2" type="Node2D" parent="FishManStateMachine" unique_id=152997143]
 script = ExtResource("9_fd5vy")
 metadata/_custom_type_script = "uid://bxi4lx7dpgor4"
+
+[node name="FishManCatchPlayer" type="Node2D" parent="FishManStateMachine" unique_id=971503851]
+script = ExtResource("13_kmtt2")
+metadata/_custom_type_script = "uid://ckonq6c42827q"
 
 [connection signal="area_shape_entered" from="Body/Hitbox" to="Body/Hitbox" method="_on_area_shape_entered"]
 [connection signal="area_shape_entered" from="Body/AttackZone" to="Body/AttackZone" method="_on_area_shape_entered"]
