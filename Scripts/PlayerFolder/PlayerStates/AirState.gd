@@ -18,8 +18,13 @@ func physice_pocess_update(delta: float)->void:
 	player.move(delta)
 	player.fall(delta)
 	#到达地面 
+	if not SkillMange.lock_doublejump_skill and player.direction.y>0 and not player.is_doulejumped:
+		player.velocity.y=player.jump_force
+		player.is_doulejumped=true
+	
 	if player.is_in_ground():
 		state_machine.change_state("IdleState")
+		SkillMange.dash_is_ready()
 		return
 	
 	if not player.is_ledge_detected() and player.is_wall_detected() and player.is_movedir_sim_facedir():

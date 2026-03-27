@@ -28,6 +28,8 @@ func pocess_update(delta: float)->void:
 func physice_pocess_update(delta: float)->void:
 	fishman.fall(delta)
 	player_position=player.global_position
+	if player_position.distance_to(fishman.global_position)>50:
+		state_machine.change_state("FishManPatrolState")
 	var player_target_dir=player_in_lft_or_rig()
 	move_to_player(delta,player_target_dir)
 	super.physice_pocess_update(delta)

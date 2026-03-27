@@ -5,8 +5,10 @@ class_name GroundAttackState
 func enter() -> void:
 	super.enter()
 	anim.play("Player_Ground_Attack")
+	player.is_attack=true
 	
 func exit()->void:
+	player.is_attack=false
 	super.exit()
 	
 ##渲染帧触发

@@ -18,15 +18,39 @@ var gravity:float=100
 @export var slide_gravity:float=10
 var is_slide:bool=false
 
+##dash
+##冲刺速度倍率
+@export var dash_speed_muti:float=12
+var candash:bool=false
+
 ##输入方向
 var direction:Vector2
 ##1为右
 var facing_dir:int=1
 
+##最大生命
+var max_health:int
+##当前生命
+var current_health:int
+##玩家防御
+@export var defence:float=30
+##玩家受伤无敌时间
+@export var player_void_damage_time:float=0.3
+var player_void_damage_timer:float
+
+
+##attack
+var is_attack:bool
+
+##doublejump
+var is_doulejumped:bool=false
+
 ##idle的enter
 func _ready() -> void:
 	ground_check.add_exception(player)
 	state_machine.statemachine_ready()
+	player_void_damage_timer=player_void_damage_time
+	current_health=max_health
 
 func _process(delta: float) -> void:
 	state_machine.statemachine_process(delta)
@@ -44,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 	state_machine.statemachine_physics_process(delta)
+	player_void_damage_timer-=delta
 	
 	
 ##是否在地面
@@ -106,11 +131,16 @@ func climb()->void:
 	##补间动画束后调用
 	tween.finished.connect(_end_climb)
 	
+func damge(attack_damage:float)->void:
+	if player_void_damage_timer<0:
+		current_health-=attack_damage-defence*0.3
+		player_void_damage_timer=player_void_damage_time
+		state_machine.change_state("IdleState")
+		return
+
 func _end_climb():
 	state_machine.change_state("IdleState")
 	
 func _finish_attack():
 	state_machine.change_state("IdleState")
-	
-	
 	

@@ -20,6 +20,8 @@ var attack_cooldowncount:float=1
 var current_attack_cooldowncount:float=1
 ##是否攻击到玩家
 var hitplayer:bool=false
+##鱼人攻击力
+@export var fishman_damage:float=20
 
 func _ready() -> void:
 	init_points()

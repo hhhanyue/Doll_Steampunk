@@ -3,6 +3,7 @@ extends PlayerStateBase
 class_name GroundState
 
 func enter()->void:
+	player.is_doulejumped=false
 	super.enter()
 	
 func pocess_update(delta: float) -> void:

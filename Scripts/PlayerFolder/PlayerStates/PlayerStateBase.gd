@@ -28,6 +28,9 @@ func pocess_update(delta: float)->void:
 	
 ##物理帧触发
 func physice_pocess_update(delta: float)->void:
+	if not player.is_attack and Input.is_action_just_pressed("dash") and player.candash:
+		state_machine.change_state("DashState")
+	
 	player.move_and_slide()
 	
 ##判断翻转

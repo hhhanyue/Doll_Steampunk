@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bjfndablekpqq" path="res://Scripts/PlayerFolder/PlayerStates/HangState.gd" id="10_prbp3"]
 [ext_resource type="Script" uid="uid://bejbbx4ee6ipb" path="res://Scripts/PlayerFolder/PlayerStates/ClimbState.gd" id="11_prbp3"]
 [ext_resource type="Script" uid="uid://blexxrty22u83" path="res://Scripts/PlayerFolder/PlayerStates/GroundAttackState.gd" id="12_s3toq"]
+[ext_resource type="Script" uid="uid://cvcnam7wbnhpa" path="res://Prefabs/DashState.gd" id="15_ms580"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3toq"]
 size = Vector2(16, 27.5)
@@ -664,3 +665,7 @@ metadata/_custom_type_script = "uid://ca6hvh1nvylrl"
 
 [node name="GroundAttackState" type="Node2D" parent="StateMachine" unique_id=2143452072]
 script = ExtResource("12_s3toq")
+
+[node name="DashState" type="Node2D" parent="StateMachine" unique_id=1185562288]
+script = ExtResource("15_ms580")
+metadata/_custom_type_script = "uid://ca6hvh1nvylrl"
