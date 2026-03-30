@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bmb5scuacx8k" path="res://Scripts/Body.gd" id="1_dgu74"]
 [ext_resource type="Texture2D" uid="uid://dad08c2wmploc" path="res://Assets/Sprites/characters/Characters/Skeleton/Skeleton/Skeleton.png" id="2_xeioe"]
 [ext_resource type="Script" uid="uid://bshr0fswmlau2" path="res://Scripts/EnemyStateMachine.gd" id="3_4cso5"]
+[ext_resource type="Script" uid="uid://bvp7f47tf0syi" path="res://Scripts/Enemy/EnemyHealthDisplay.gd" id="4_5l8fl"]
 [ext_resource type="Script" uid="uid://0b2t6fd0e15u" path="res://Scripts/Enemy/FishMan/FishmanState/FishManIdleState.gd" id="4_7b0x7"]
 [ext_resource type="Script" uid="uid://bne3xyoygxg6y" path="res://Scripts/PlayerFolder/PlayerHitBox.gd" id="4_y22u0"]
 [ext_resource type="Script" uid="uid://cgnixxr0gylx6" path="res://Scripts/Enemy/FishMan/FishManAttackZone.gd" id="5_nyim0"]
@@ -23,7 +24,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:vframes")
+tracks/0/path = NodePath("Body/display:vframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Sprite2D:hframes")
+tracks/1/path = NodePath("Body/display:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +48,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Sprite2D:region_rect")
+tracks/2/path = NodePath("Body/display:region_rect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -59,7 +60,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/path = NodePath("Body/display:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -131,7 +132,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:hframes")
+tracks/0/path = NodePath("Body/display:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -143,7 +144,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Sprite2D:vframes")
+tracks/1/path = NodePath("Body/display:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -155,7 +156,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Sprite2D:region_rect")
+tracks/2/path = NodePath("Body/display:region_rect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -167,7 +168,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/path = NodePath("Body/display:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -249,7 +250,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:region_rect")
+tracks/0/path = NodePath("Body/display:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -261,7 +262,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Sprite2D:hframes")
+tracks/1/path = NodePath("Body/display:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -273,7 +274,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Sprite2D:vframes")
+tracks/2/path = NodePath("Body/display:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -285,7 +286,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/path = NodePath("Body/display:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -302,7 +303,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:region_rect")
+tracks/0/path = NodePath("Body/display:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -314,7 +315,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Sprite2D:hframes")
+tracks/1/path = NodePath("Body/display:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -326,7 +327,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Sprite2D:vframes")
+tracks/2/path = NodePath("Body/display:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -338,7 +339,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/path = NodePath("Body/display:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -389,7 +390,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:region_rect")
+tracks/0/path = NodePath("Body/display:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -401,7 +402,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Sprite2D:hframes")
+tracks/1/path = NodePath("Body/display:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -413,7 +414,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Sprite2D:vframes")
+tracks/2/path = NodePath("Body/display:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -425,7 +426,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Sprite2D:frame")
+tracks/3/path = NodePath("Body/display:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -536,7 +537,7 @@ libraries/ = SubResource("AnimationLibrary_7ehbg")
 script = ExtResource("1_dgu74")
 metadata/_custom_type_script = "uid://bmb5scuacx8k"
 
-[node name="Sprite2D" type="Sprite2D" parent="Body" unique_id=288369768]
+[node name="display" type="Sprite2D" parent="Body" unique_id=288369768]
 position = Vector2(-0.17985201, -1.9784446)
 scale = Vector2(0.47166505, 0.47166497)
 texture = ExtResource("2_xeioe")
@@ -545,24 +546,45 @@ vframes = 2
 region_enabled = true
 region_rect = Rect2(0, 0, 384, 128)
 
+[node name="hpdisplay" type="Node2D" parent="Body" unique_id=1673389998]
+position = Vector2(-4.875018, 2.5620537)
+script = ExtResource("4_5l8fl")
+
+[node name="great" type="ColorRect" parent="Body/hpdisplay" unique_id=640520340]
+offset_right = 0.98604393
+offset_bottom = 0.98604393
+color = Color(0.10674488, 0.87031454, 0, 1)
+
+[node name="notbad" type="ColorRect" parent="Body/hpdisplay" unique_id=1192391183]
+offset_top = 0.9963541
+offset_right = 0.98604393
+offset_bottom = 1.982398
+color = Color(0.73869026, 0.5455724, 0.017176133, 1)
+
+[node name="danger" type="ColorRect" parent="Body/hpdisplay" unique_id=557049774]
+offset_top = 2.206213
+offset_right = 0.98604393
+offset_bottom = 3.192257
+color = Color(0.73221827, 0.033194553, 0.10865041, 1)
+
 [node name="GroundCheckFront" type="RayCast2D" parent="Body" unique_id=727499079]
-position = Vector2(3.7107792, 4.992717)
+position = Vector2(2.892702, 5.3371706)
 target_position = Vector2(0, 1.475)
 
 [node name="GroundCheckBack" type="RayCast2D" parent="Body" unique_id=991131989]
-position = Vector2(-2.864, 4.993)
+position = Vector2(-2.6917722, 5.079114)
 target_position = Vector2(0, 1.475)
 
 [node name="GrabPoint" type="Marker2D" parent="Body" unique_id=745467154]
 position = Vector2(0.10419655, -5.8350487)
 
-[node name="Hitbox" type="Area2D" parent="Body" unique_id=1881556223]
+[node name="EnemyHitbox" type="Area2D" parent="Body" unique_id=1881556223]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("4_y22u0")
 metadata/_custom_type_script = "uid://bne3xyoygxg6y"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox" unique_id=516077627]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyHitbox" unique_id=516077627]
 shape = SubResource("CapsuleShape2D_nyim0")
 
 [node name="AttackZone" type="Area2D" parent="Body" unique_id=689270373]
@@ -604,5 +626,5 @@ metadata/_custom_type_script = "uid://bxi4lx7dpgor4"
 script = ExtResource("13_kmtt2")
 metadata/_custom_type_script = "uid://ckonq6c42827q"
 
-[connection signal="area_shape_entered" from="Body/Hitbox" to="Body/Hitbox" method="_on_area_shape_entered"]
+[connection signal="area_shape_entered" from="Body/EnemyHitbox" to="Body/EnemyHitbox" method="_on_area_shape_entered"]
 [connection signal="area_shape_entered" from="Body/AttackZone" to="Body/AttackZone" method="_on_area_shape_entered"]

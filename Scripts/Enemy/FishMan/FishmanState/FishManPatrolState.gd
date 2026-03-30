@@ -26,6 +26,6 @@ func physice_pocess_update(delta: float)->void:
 	super.physice_pocess_update(delta)
 	
 func player_detected()->bool:
-	if fishman.global_position.distance_to(player.global_position)<20:
+	if fishman.global_position.distance_to(player.global_position)<30:
 		return true
 	return false

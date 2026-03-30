@@ -6,6 +6,7 @@ func enter() -> void:
 	super.enter()
 	anim.play("Player_Ground_Attack")
 	player.is_attack=true
+	player.attack_enemy_list=[]
 	
 func exit()->void:
 	player.is_attack=false

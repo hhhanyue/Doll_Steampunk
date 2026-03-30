@@ -23,7 +23,7 @@ func physice_pocess_update(delta: float)->void:
 		##如果不在攻击接近玩家
 		if statetimer<0:
 			state_machine.change_state("FishManPatrolState")
-		if fishman.global_position.distance_to(player.global_position)<5:
+		if fishman.global_position.distance_to(player.global_position)<12:
 			fishman.velocity=Vector2.ZERO
 			is_attacking=true
 			anim.play("FishMan_Attack_1")

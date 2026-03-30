@@ -12,7 +12,7 @@ func enter() -> void:
 	
 func exit()->void:
 	if not player.is_in_ground():
-		SkillMange.dash_in_cool()
+		SkillManger.instance.dash_in_cool()
 	
 	
 ##渲染帧触发

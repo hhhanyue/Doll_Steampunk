@@ -2,8 +2,8 @@ extends FishManStateBase
 
 class_name FishManEngageState
 
-var min_player_distance:float=3
-var max_player_distance:float=10
+@export var min_player_distance:float=10
+@export var max_player_distance:float=20
 var should_keep_distance:float
 
 var player_position:Vector2
@@ -71,7 +71,7 @@ func confrontation(delta:float,back_no_ground:bool)->void:
 		if confrontation_dir==player_in_lft_or_rig() and not back_no_ground:
 			pass
 		else:
-			fishman.Move(delta,confrontation_dir,fishman.speed/7)
+			fishman.Move(delta,confrontation_dir,fishman.speed/5)
 	
 func is_back_no_ground()->bool:
 	if not fishman.is_in_ground(fishman.ground_check_back):

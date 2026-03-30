@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dcf5dowyjtypi"]
+
+[ext_resource type="Texture2D" uid="uid://c5ob3vkvn84wr" path="res://Assets/Sprites/UI/Healthred.png" id="1_7e838"]
+[ext_resource type="Script" uid="uid://bqlfpgajsfdwn" path="res://Scripts/UI/PlayerHPUI.gd" id="1_m5lkp"]
+[ext_resource type="Texture2D" uid="uid://csjrhpogoomhd" path="res://Assets/Sprites/UI/Healthgreen.png" id="2_m5lkp"]
+[ext_resource type="Texture2D" uid="uid://08v4hyafgp3y" path="res://Assets/Sprites/UI/HealthBar.png" id="3_p77em"]
+
+[node name="health" type="Node2D" unique_id=915620321]
+script = ExtResource("1_m5lkp")
+
+[node name="HPBack" type="TextureProgressBar" parent="." unique_id=986079849]
+offset_top = 69.3
+offset_right = 119.0
+offset_bottom = 188.3
+step = 0.1
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_top = 119
+stretch_margin_right = 119
+texture_progress = ExtResource("1_7e838")
+
+[node name="HPFront" type="TextureProgressBar" parent="." unique_id=1057956126]
+offset_left = -1.1
+offset_top = 67.1
+offset_right = 117.9
+offset_bottom = 186.1
+step = 0.1
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_top = 119
+stretch_margin_right = 119
+texture_progress = ExtResource("2_m5lkp")
+
+[node name="HPbarView" type="NinePatchRect" parent="." unique_id=1619980738]
+offset_right = 183.0
+offset_bottom = 193.0
+texture = ExtResource("3_p77em")
+region_rect = Rect2(0, 0, 790, 191)
+patch_margin_right = 119

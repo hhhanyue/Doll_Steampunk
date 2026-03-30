@@ -24,6 +24,7 @@ var hitplayer:bool=false
 @export var fishman_damage:float=20
 
 func _ready() -> void:
+	super._ready()
 	init_points()
 	state_machine.enemy_ready()
 	
@@ -33,12 +34,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.enemy_physics_process(delta)
 	current_attack_cooldowncount-=delta
+	print(current_health)
 	
 ##敌人离标记点是否够近
 ##point_index代表巡逻点
 ##从正序到逆序循环
 func Enemy_Near_Point()->bool:
-	if self.global_position.distance_to(target_pos)<3:
+	if self.global_position.distance_to(target_pos)<10:
 		if is_ascend:
 			point_index+=1
 		else:

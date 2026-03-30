@@ -7,13 +7,18 @@ class_name Enemy
 @onready var anim:AnimationPlayer=$"AnimationPlayer"
 @onready var ground_check_front:RayCast2D=$"Body/GroundCheckFront"
 @onready var ground_check_back:RayCast2D=$"Body/GroundCheckBack"
+@onready var hpdisplay: EnemyHealthDisplay = $Body/hpdisplay
 
 @export var speed:float =800
 var gravity:float=100
 
 var facing_direction:int=1
 
+@export var health:float=100
+var current_health:float
+
 func _ready() -> void:
+	current_health=health
 	pass
 
 
@@ -29,3 +34,7 @@ func is_in_ground(groundcheck:RayCast2D)->bool:
 	if ground_collid_object is TileMapLayer:
 		return true
 	return false
+
+func damge(damage_point:float)->void:
+	hpdisplay.switch_health_display()
+	current_health-=damage_point

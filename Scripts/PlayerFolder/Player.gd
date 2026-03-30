@@ -29,7 +29,7 @@ var direction:Vector2
 var facing_dir:int=1
 
 ##最大生命
-var max_health:int
+var max_health:int=100
 ##当前生命
 var current_health:int
 ##玩家防御
@@ -37,8 +37,12 @@ var current_health:int
 ##玩家受伤无敌时间
 @export var player_void_damage_time:float=0.3
 var player_void_damage_timer:float
+##玩家攻击力
+@export var damage:float=10
+##攻击的怪物列表
+var attack_enemy_list:Array[Enemy]
 
-
+@export var hp_system:PlayerHPUI
 ##attack
 var is_attack:bool
 
@@ -51,6 +55,8 @@ func _ready() -> void:
 	state_machine.statemachine_ready()
 	player_void_damage_timer=player_void_damage_time
 	current_health=max_health
+	await hp_system.ready
+	hp_system.change_max_life(max_health)
 
 func _process(delta: float) -> void:
 	state_machine.statemachine_process(delta)
@@ -135,8 +141,14 @@ func damge(attack_damage:float)->void:
 	if player_void_damage_timer<0:
 		current_health-=attack_damage-defence*0.3
 		player_void_damage_timer=player_void_damage_time
+		hp_system.change_life(current_health)
 		state_machine.change_state("IdleState")
 		return
+		
+func attack_enemy(enemy:Enemy)->void:
+	if enemy not in attack_enemy_list:
+		enemy.damge(damage)
+		attack_enemy_list.append(enemy)
 
 func _end_climb():
 	state_machine.change_state("IdleState")

@@ -2,13 +2,21 @@ extends Node2D
 
 class_name SkillManger
 
+static var instance:SkillManger
+
+func _enter_tree():
+	if instance == null:
+		instance = self
+	else:
+		queue_free() 
+
 @export var dashcooldowntime:float=1
 var dashcooldowntimer:float 
 var player:Player
 
 ##skilllock
-var lock_dash_skill:bool=true
-var lock_doublejump_skill:bool=true
+@export var lock_dash_skill:bool=true
+@export var lock_doublejump_skill:bool=true
 
 func _ready() -> void:
 	dashcooldowntimer=dashcooldowntime

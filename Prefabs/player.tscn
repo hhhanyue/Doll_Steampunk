@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bmb5scuacx8k" path="res://Scripts/Body.gd" id="2_ia8lp"]
 [ext_resource type="Texture2D" uid="uid://348y6r831nxi" path="res://Assets/Sprites/characters/Characters/Knight/Knight/Knight.png" id="3_6dqou"]
 [ext_resource type="Script" uid="uid://cuq04hk73ttl" path="res://Scripts/AttackCollision.gd" id="4_h0ss5"]
+[ext_resource type="Script" uid="uid://ci16rcklho51p" path="res://Scripts/PlayerFolder/PlayerAttackArea.gd" id="4_q7l0e"]
 [ext_resource type="Script" uid="uid://cwd5nresknnrs" path="res://Scripts/PlayerFolder/PlayerStateMachine/PlayerStateMachine.gd" id="4_qe4ot"]
 [ext_resource type="Script" uid="uid://b7r0hi1pptut3" path="res://Scripts/PlayerFolder/PlayerStates/IdleState.gd" id="5_6dqou"]
 [ext_resource type="Script" uid="uid://bne3xyoygxg6y" path="res://Scripts/PlayerFolder/PlayerHitBox.gd" id="5_b30ri"]
@@ -14,7 +15,7 @@
 [ext_resource type="Script" uid="uid://bjfndablekpqq" path="res://Scripts/PlayerFolder/PlayerStates/HangState.gd" id="10_prbp3"]
 [ext_resource type="Script" uid="uid://bejbbx4ee6ipb" path="res://Scripts/PlayerFolder/PlayerStates/ClimbState.gd" id="11_prbp3"]
 [ext_resource type="Script" uid="uid://blexxrty22u83" path="res://Scripts/PlayerFolder/PlayerStates/GroundAttackState.gd" id="12_s3toq"]
-[ext_resource type="Script" uid="uid://cvcnam7wbnhpa" path="res://Prefabs/DashState.gd" id="15_ms580"]
+[ext_resource type="Script" uid="uid://cvcnam7wbnhpa" path="res://Scripts/PlayerFolder/PlayerStates/DashState.gd" id="15_ms580"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3toq"]
 size = Vector2(16, 27.5)
@@ -574,14 +575,12 @@ state_machine = NodePath("StateMachine")
 position = Vector2(0.5710993, -13.75)
 shape = SubResource("RectangleShape2D_s3toq")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=10446772]
-zoom = Vector2(8, 8)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=239423560]
 root_node = NodePath("../Body/Sprite2D")
 libraries/ = SubResource("AnimationLibrary_s3toq")
 
 [node name="Body" type="Node2D" parent="." unique_id=1350618320]
+position = Vector2(0.7336475, 0)
 script = ExtResource("2_ia8lp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body" unique_id=1776986311]
@@ -615,8 +614,9 @@ target_position = Vector2(0, 0.7)
 [node name="AttackArea" type="Area2D" parent="Body" unique_id=1484101563]
 position = Vector2(19.000689, -8.887412)
 scale = Vector2(0.9999999, 0.9999999)
-collision_layer = 2
+collision_layer = 4
 collision_mask = 4
+script = ExtResource("4_q7l0e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/AttackArea" unique_id=36037331]
 position = Vector2(0, -3.2026443)
@@ -669,3 +669,5 @@ script = ExtResource("12_s3toq")
 [node name="DashState" type="Node2D" parent="StateMachine" unique_id=1185562288]
 script = ExtResource("15_ms580")
 metadata/_custom_type_script = "uid://ca6hvh1nvylrl"
+
+[connection signal="area_shape_entered" from="Body/AttackArea" to="Body/AttackArea" method="_on_area_shape_entered"]
