@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://6mkx3jj4ukpi"]
+
+[ext_resource type="Texture2D" uid="uid://cxqfem1p4p6qr" path="res://Assets/Sprites/characters/Characters/Knight/Knight/Knight-effect-Attack01.png" id="1_e8jku"]
+[ext_resource type="Script" uid="uid://bvgr0vmaqcrri" path="res://Scripts/ResouceScripts/Skills/SkillResource.gd" id="1_m41s6"]
+
+[resource]
+script = ExtResource("1_m41s6")
+name = "dash"
+icon = ExtResource("1_e8jku")
+metadata/_custom_type_script = "uid://bvgr0vmaqcrri"

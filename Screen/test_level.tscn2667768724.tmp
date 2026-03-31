@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://cwxh3shvwfhc0" path="res://Scripts/ResouceScripts/ItemData.gd" id="10_pdpxn"]
 [ext_resource type="Resource" uid="uid://db3md71w8ifmm" path="res://Resources/weapon1.tres" id="11_e2s8f"]
 [ext_resource type="Resource" uid="uid://ck40b55erfky4" path="res://Resources/weapon2.tres" id="12_ms5j7"]
-[ext_resource type="Script" uid="uid://c0ebnxvptnna5" path="res://Scripts/GameManagers/UIManger.gd" id="13_e2s8f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5bq4"]
 texture = ExtResource("2_tftgq")
@@ -140,18 +139,27 @@ position = Vector2(-12.320454, 5.0956955)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=554062984]
 
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1211344117]
+visible = false
+offset_left = 28.108597
+offset_top = 42.342934
+offset_right = 289.10858
+offset_bottom = 157.34293
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 84
+text = "health"
+
 [node name="health" parent="CanvasLayer" unique_id=915620321 instance=ExtResource("6_b07su")]
 visible = false
 
-[node name="UI" parent="CanvasLayer" unique_id=366723834 instance=ExtResource("8_bsgdg")]
+[node name="Control" parent="CanvasLayer" unique_id=366723834 instance=ExtResource("8_bsgdg")]
+offset_left = 53.55945
+offset_top = 24.293762
+offset_right = -26.440552
+offset_bottom = -45.706238
 
 [node name="Inventory" type="Node" parent="." unique_id=1077747985]
 script = ExtResource("9_g1grs")
 item = ExtResource("11_e2s8f")
 equipment_inventory_item_list = Array[ExtResource("10_pdpxn")]([null, ExtResource("12_ms5j7"), ExtResource("11_e2s8f"), null, null, null])
 metadata/_custom_type_script = "uid://bu8gomdk44n8s"
-
-[node name="UIManger" type="Node2D" parent="." unique_id=237616171 node_paths=PackedStringArray("ui")]
-script = ExtResource("13_e2s8f")
-ui = NodePath("../CanvasLayer/UI")
-metadata/_custom_type_script = "uid://c0ebnxvptnna5"

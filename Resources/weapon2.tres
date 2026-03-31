@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ck40b55erfky4"]
+
+[ext_resource type="Script" uid="uid://cwxh3shvwfhc0" path="res://Scripts/ResouceScripts/ItemData.gd" id="1_6wu3m"]
+[ext_resource type="Texture2D" uid="uid://g0in7xwx5aay" path="res://kenney_ui-pack-rpg-expansion/PNG/cursorSword_bronze.png" id="1_nnm4q"]
+
+[resource]
+script = ExtResource("1_6wu3m")
+name = "weapon2"
+icon = ExtResource("1_nnm4q")
+metadata/_custom_type_script = "uid://cwxh3shvwfhc0"

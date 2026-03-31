@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.enemy_physics_process(delta)
 	current_attack_cooldowncount-=delta
-	print(current_health)
 	
 ##敌人离标记点是否够近
 ##point_index代表巡逻点

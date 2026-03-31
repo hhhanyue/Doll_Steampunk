@@ -1,0 +1,363 @@
+[gd_scene format=3 uid="uid://ocks8esre02k"]
+
+[ext_resource type="Script" uid="uid://prpwwjs4wsxt" path="res://Scripts/UI/UI.gd" id="1_ryj4e"]
+[ext_resource type="Texture2D" uid="uid://didt08f3cv4mp" path="res://kenney_ui-pack-rpg-expansion/PNG/panel_brown.png" id="2_603w0"]
+[ext_resource type="Texture2D" uid="uid://dlgywx844odle" path="res://kenney_ui-pack-rpg-expansion/PNG/panelInset_beige.png" id="2_ev241"]
+[ext_resource type="Texture2D" uid="uid://cf6p3kvkdfoso" path="res://kenney_ui-pack-rpg-expansion/PNG/panelInset_brown.png" id="2_ryj4e"]
+[ext_resource type="Texture2D" uid="uid://beudx1x468vb6" path="res://icon.svg" id="2_u0s6x"]
+[ext_resource type="Script" uid="uid://cc6ndbv7m2pk8" path="res://Scripts/UI/Button/EquipmentSlot.gd" id="4_ofh3o"]
+[ext_resource type="Script" uid="uid://cck3mbgj06ctp" path="res://Scripts/UI/Button/EquipmentInventoryButton.gd" id="6_ikhtd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0s6x"]
+bg_color = Color(0.54220104, 0.6405442, 0.5985743, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0fc3"]
+bg_color = Color(0.8032263, 0.53740996, 0.11596463, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryj4e"]
+bg_color = Color(0.57746685, 0.62031317, 0.50570184, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev241"]
+bg_color = Color(0.1095907, 0.6206527, 0.99999994, 1)
+
+[node name="UI" type="Control" unique_id=366723834 node_paths=PackedStringArray("equipment", "backpack")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 28.669006
+offset_right = -35.0
+offset_bottom = -41.330994
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ryj4e")
+equipment = NodePath("VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory")
+backpack = NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer")
+default_icon = ExtResource("2_603w0")
+
+[node name="VSP" type="VBoxContainer" parent="." unique_id=179489329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VSP" unique_id=858312499]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u0s6x")
+
+[node name="NaviGate" type="HBoxContainer" parent="VSP/PanelContainer" unique_id=104786292]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Main" type="MarginContainer" parent="VSP/PanelContainer/NaviGate" unique_id=1356834161]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Button" type="Button" parent="VSP/PanelContainer/NaviGate/Main" unique_id=1074852753]
+custom_minimum_size = Vector2(150.52, 0)
+layout_mode = 2
+text = "Main"
+
+[node name="Sub" type="MarginContainer" parent="VSP/PanelContainer/NaviGate" unique_id=3133521]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Button" type="Button" parent="VSP/PanelContainer/NaviGate/Sub" unique_id=1790631637]
+custom_minimum_size = Vector2(150.52, 0)
+layout_mode = 2
+text = "Sub"
+
+[node name="System" type="MarginContainer" parent="VSP/PanelContainer/NaviGate" unique_id=1274007153]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Button" type="Button" parent="VSP/PanelContainer/NaviGate/System" unique_id=322909219]
+custom_minimum_size = Vector2(150.52, 0)
+layout_mode = 2
+text = "System
+"
+
+[node name="Content" type="Control" parent="VSP" unique_id=1816032563]
+custom_minimum_size = Vector2(0, 575)
+layout_mode = 2
+
+[node name="EquipMenu" type="HBoxContainer" parent="VSP/Content" unique_id=252355438]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VSP/Content/EquipMenu" unique_id=1033952127]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSP/Content/EquipMenu/PanelContainer" unique_id=795149066]
+custom_minimum_size = Vector2(490, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer" unique_id=1822341825]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f0fc3")
+
+[node name="Control" type="Control" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/PanelContainer" unique_id=1696042762]
+custom_minimum_size = Vector2(0, 370)
+layout_mode = 2
+
+[node name="PlayerIcon" type="TextureRect" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/PanelContainer/Control" unique_id=1363801842]
+layout_mode = 0
+offset_left = 115.66391
+offset_top = 62.956284
+offset_right = 359.17383
+offset_bottom = 300.6098
+texture = ExtResource("2_u0s6x")
+
+[node name="HSeparator" type="HSeparator" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer" unique_id=2008719918]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CurrentEquipment" type="PanelContainer" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer" unique_id=645548427]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ryj4e")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment" unique_id=1487684760]
+layout_mode = 2
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 110
+theme_override_constants/margin_bottom = 10
+
+[node name="EquipmentInventory" type="GridContainer" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer" unique_id=449908998]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[node name="Equipment1" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=431705346]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="Equipment2" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=106116474]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="Equipment3" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=45176093]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="Equipment4" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=487271137]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="Equipment5" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=1379814432]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="Equipment6" type="Button" parent="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory" unique_id=1256450650]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("2_ev241")
+expand_icon = true
+script = ExtResource("4_ofh3o")
+
+[node name="VSeparator" type="VSeparator" parent="VSP/Content/EquipMenu" unique_id=2095845634]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EquipmentInventory" type="PanelContainer" parent="VSP/Content/EquipMenu" unique_id=1935735442]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ev241")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSP/Content/EquipMenu/EquipmentInventory" unique_id=1147693557]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ItemNavi" type="HBoxContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer" unique_id=40535166]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi" unique_id=128155670]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="GridContainer" type="GridContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer" unique_id=1249131146]
+layout_mode = 2
+theme_override_constants/h_separation = 77
+columns = 3
+
+[node name="Button" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=933329758]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+expand_icon = true
+
+[node name="Button2" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=1055113262]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+expand_icon = true
+
+[node name="Button3" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=2142927290]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer" unique_id=1562151576]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer" unique_id=1252211784]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer" unique_id=576428461]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer" unique_id=1768190638]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 6
+
+[node name="Equipment_Inventory" type="Control" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=301527511]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory" unique_id=328989287]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 0
+offset_right = 110.0
+offset_bottom = 110.0
+icon = ExtResource("2_ryj4e")
+expand_icon = true
+script = ExtResource("6_ikhtd")
+
+[node name="Label" type="Label" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory" unique_id=1336606208]
+layout_mode = 0
+offset_left = 75.5155
+offset_top = 79.657745
+offset_right = 95.760376
+offset_bottom = 102.657745
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Equipment_Inventory2" type="Control" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=1705295722]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory2" unique_id=159316720]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 0
+offset_right = 110.0
+offset_bottom = 110.0
+icon = ExtResource("2_ryj4e")
+expand_icon = true
+script = ExtResource("6_ikhtd")
+index = 1
+
+[node name="Label" type="Label" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory2" unique_id=1536165749]
+layout_mode = 0
+offset_left = 75.5155
+offset_top = 79.657745
+offset_right = 95.760376
+offset_bottom = 102.657745
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Equipment_Inventory3" type="Control" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=657038848]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory3" unique_id=1761612553]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 0
+offset_right = 110.0
+offset_bottom = 110.0
+icon = ExtResource("2_ryj4e")
+expand_icon = true
+script = ExtResource("6_ikhtd")
+index = 2
+
+[node name="Label" type="Label" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory3" unique_id=2036871089]
+layout_mode = 0
+offset_left = 75.5155
+offset_top = 79.657745
+offset_right = 95.760376
+offset_bottom = 102.657745
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="InventoryMenu" type="HBoxContainer" parent="VSP/Content" unique_id=1338116202]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SystemMenu" type="HBoxContainer" parent="VSP/Content" unique_id=1364411347]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment1" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment1" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment2" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment2" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment3" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment3" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment4" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment4" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment5" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment5" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment6" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment6" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory/Button" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory/Button" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory2/Button" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory2/Button" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory3/Button" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer/Equipment_Inventory3/Button" method="_on_pressed"]
