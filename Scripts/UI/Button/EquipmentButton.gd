@@ -1,13 +1,13 @@
 extends Button
 
-class_name EquipmentInventoryButton
+class_name EquipmentButton
 
 var current_item:InventoryItem=null
-var buttontype:String
+
 @export var index:int
 
 func _on_pressed() -> void:
-	print("press")
+	print("react")
 	
 ##内置方法  拖动
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -27,10 +27,10 @@ func _can_drop_data(at_position, data):
 func _drop_data(at_position, data):
 	var source_slot = data # 拖过来的格子
 	var target_slot = self # 当前被放下的格子
-	if data is EquipmentButton and self is EquipmentInventoryButton:
-		Inventory.instance.switch_inventory_item_outer(source_slot.index,target_slot.index,true,false,buttontype)
-	elif data is EquipmentInventoryButton and self is EquipmentInventoryButton:
-		Inventory.instance.switch_inventory_item_outer(source_slot.index,target_slot.index,false,false,buttontype)
+	if data is EquipmentInventoryButton and self is EquipmentButton:
+		var buttontype=data.buttontype
+		Inventory.instance.switch_inventory_item_outer(source_slot.index,target_slot.index,true,true,buttontype)
+	elif data is EquipmentButton and self is EquipmentButton:
+		Inventory.instance.switch_inventory_item_outer(source_slot.index,target_slot.index,false,true,"")
 	else:
 		printerr("交换失效")
-	

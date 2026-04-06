@@ -19,7 +19,7 @@ bg_color = Color(0.57746685, 0.62031317, 0.50570184, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev241"]
 bg_color = Color(0.1095907, 0.6206527, 0.99999994, 1)
 
-[node name="UI" type="Control" unique_id=366723834 node_paths=PackedStringArray("equipment", "equipment_inventory_list", "equipment_inventory_navi")]
+[node name="UI" type="Control" unique_id=366723834 node_paths=PackedStringArray("equipment", "equipment_inventory_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +34,6 @@ script = ExtResource("1_u0s6x")
 equipment = NodePath("VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory")
 equipment_inventory_list = [NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/EquipmentInventory/NearAttackEquipment/PanelContainer/ScrollContainer/NearGridContainer"), NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/EquipmentInventory/FarAttackEquipment/PanelContainer/ScrollContainer/FarGridContainer"), NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/EquipmentInventory/BuffAttackEquipment/PanelContainer/ScrollContainer/BuffGridContainer")]
 default_icon = ExtResource("2_ev241")
-equipment_inventory_navi = NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/EquipmentInventory")
 itemdata = ExtResource("3_ikhtd")
 
 [node name="VSP" type="VBoxContainer" parent="." unique_id=179489329]
@@ -237,26 +236,21 @@ layout_mode = 2
 theme_override_constants/h_separation = 77
 columns = 3
 
-[node name="Near" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=933329758 node_paths=PackedStringArray("control_inventory")]
+[node name="Button" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=933329758]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 expand_icon = true
 script = ExtResource("6_ikhtd")
-control_inventory = NodePath("../../../../EquipmentInventory/NearAttackEquipment")
 
-[node name="Far" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=261314611 node_paths=PackedStringArray("control_inventory")]
+[node name="Button2" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=1055113262]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 expand_icon = true
-script = ExtResource("6_ikhtd")
-control_inventory = NodePath("../../../../EquipmentInventory/FarAttackEquipment")
 
-[node name="Buff" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=1764252958 node_paths=PackedStringArray("control_inventory")]
+[node name="Button3" type="Button" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer" unique_id=2142927290]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 expand_icon = true
-script = ExtResource("6_ikhtd")
-control_inventory = NodePath("../../../../EquipmentInventory/BuffAttackEquipment")
 
 [node name="EquipmentInventory" type="Control" parent="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer" unique_id=1813551295]
 layout_mode = 2
@@ -360,6 +354,4 @@ grow_vertical = 2
 [connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment4" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment4" method="_on_pressed"]
 [connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment5" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment5" method="_on_pressed"]
 [connection signal="pressed" from="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment6" to="VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory/Equipment6" method="_on_pressed"]
-[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Near" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Near" method="_on_pressed"]
-[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Far" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Far" method="_on_pressed"]
-[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Buff" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Buff" method="_on_pressed"]
+[connection signal="pressed" from="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Button" to="VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/ItemNavi/MarginContainer/GridContainer/Button" method="_on_pressed"]

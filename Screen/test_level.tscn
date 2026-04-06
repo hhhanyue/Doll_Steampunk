@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dcf5dowyjtypi" path="res://health.tscn" id="6_b07su"]
 [ext_resource type="PackedScene" uid="uid://ocks8esre02k" path="res://Prefabs/UI.tscn" id="8_bsgdg"]
 [ext_resource type="Script" uid="uid://bu8gomdk44n8s" path="res://Scripts/Inventory/Inventory.gd" id="9_g1grs"]
-[ext_resource type="Script" uid="uid://cwxh3shvwfhc0" path="res://Scripts/ResouceScripts/ItemData.gd" id="10_pdpxn"]
-[ext_resource type="Resource" uid="uid://db3md71w8ifmm" path="res://Resources/weapon1.tres" id="11_e2s8f"]
 [ext_resource type="Resource" uid="uid://ck40b55erfky4" path="res://Resources/weapon2.tres" id="12_ms5j7"]
 [ext_resource type="Script" uid="uid://c0ebnxvptnna5" path="res://Scripts/GameManagers/UIManger.gd" id="13_e2s8f"]
 
@@ -147,8 +145,7 @@ visible = false
 
 [node name="Inventory" type="Node" parent="." unique_id=1077747985]
 script = ExtResource("9_g1grs")
-item = ExtResource("11_e2s8f")
-equipment_inventory_item_list = Array[ExtResource("10_pdpxn")]([null, ExtResource("12_ms5j7"), ExtResource("11_e2s8f"), null, null, null])
+item = ExtResource("12_ms5j7")
 metadata/_custom_type_script = "uid://bu8gomdk44n8s"
 
 [node name="UIManger" type="Node2D" parent="." unique_id=237616171 node_paths=PackedStringArray("ui")]
