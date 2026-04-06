@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://ocks8esre02k"]
+[gd_scene format=3 uid="uid://disjct0baae7s"]
 
-[ext_resource type="Script" uid="uid://prpwwjs4wsxt" path="res://Scripts/UI/UI.gd" id="1_ryj4e"]
+[ext_resource type="Script" uid="uid://dnyidkpamknuj" path="res://Scripts/UI/UI.gd" id="1_ryj4e"]
 [ext_resource type="Texture2D" uid="uid://didt08f3cv4mp" path="res://kenney_ui-pack-rpg-expansion/PNG/panel_brown.png" id="2_603w0"]
 [ext_resource type="Texture2D" uid="uid://dlgywx844odle" path="res://kenney_ui-pack-rpg-expansion/PNG/panelInset_beige.png" id="2_ev241"]
 [ext_resource type="Texture2D" uid="uid://beudx1x468vb6" path="res://icon.svg" id="2_u0s6x"]
-[ext_resource type="Script" uid="uid://cc6ndbv7m2pk8" path="res://Scripts/UI/Button/EquipmentSlot.gd" id="4_ofh3o"]
+[ext_resource type="Script" uid="uid://cc6ndbv7m2pk8" path="res://Scripts/UI/Button/EquipmentButton.gd" id="4_ofh3o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0s6x"]
 bg_color = Color(0.54220104, 0.6405442, 0.5985743, 1)
@@ -18,7 +18,7 @@ bg_color = Color(0.57746685, 0.62031317, 0.50570184, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev241"]
 bg_color = Color(0.1095907, 0.6206527, 0.99999994, 1)
 
-[node name="UI" type="Control" unique_id=366723834 node_paths=PackedStringArray("equipment", "backpack")]
+[node name="UI" type="Control" unique_id=366723834 node_paths=PackedStringArray("equipment")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +31,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ryj4e")
 equipment = NodePath("VSP/Content/EquipMenu/PanelContainer/VBoxContainer/CurrentEquipment/MarginContainer/EquipmentInventory")
-backpack = NodePath("VSP/Content/EquipMenu/EquipmentInventory/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/GridContainer")
 default_icon = ExtResource("2_603w0")
 
 [node name="VSP" type="VBoxContainer" parent="." unique_id=179489329]
